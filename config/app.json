@@ -1,0 +1,29 @@
+{
+    "app_name": "Stock Keeper Inventory",
+    "app_version": "1.0.0",
+    "app_url": "localhost",
+    "app_base": "/stock-lens",
+    "api": {
+        "_url": "/api",
+        "_auth": "/auth",
+        "_version": "/1.0"
+    },
+    "api_query_limit": 20,
+    "bcrypt":{
+        "_rounds": 10
+    },
+    "indices": {
+        "user": "smart_users",
+        "branch": "smart_branches",
+        "station": "smart_stations"
+    },
+    "doc_type": {
+        "user": "user",
+        "branch": "branch",
+        "station": "station"
+    },
+    "mail_subject": {
+        "verify": "User Verification",
+        "confirm": "User Confirmation"
+    }
+}

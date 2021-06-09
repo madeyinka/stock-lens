@@ -1,0 +1,45 @@
+{
+  "name": "stock-lens",
+  "version": "1.0.0",
+  "description": "A stock taking inventory system. Reconciliation and sales valuation.",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node api.js",
+    "dev": "nodemon api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madeyinka/stock-lens.git"
+  },
+  "author": "HubIT Dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/madeyinka/stock-lens/issues"
+  },
+  "homepage": "https://github.com/madeyinka/stock-lens#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "^6.8.6",
+    "array.prototype.flatmap": "^1.2.4",
+    "aws-elasticsearch-connector": "^8.2.0",
+    "aws-sdk": "^2.669.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "config.json": "0.0.4",
+    "dotenv": "^8.2.0",
+    "elastic-builder": "^2.6.1",
+    "elasticsearch": "^16.7.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
+    "moment-timezone": "^0.5.32",
+    "sha256": "^0.2.0",
+    "striptags": "^3.1.1",
+    "unirest": "^0.6.0",
+    "url-slug": "^3.0.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
