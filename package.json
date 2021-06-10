@@ -33,10 +33,10 @@
     "jsonwebtoken": "^8.5.1",
     "mailgun-js": "^0.22.0",
     "moment-timezone": "^0.5.32",
-    "sha256": "^0.2.0",
     "striptags": "^3.1.1",
     "unirest": "^0.6.0",
     "url-slug": "^3.0.1",
+    "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {

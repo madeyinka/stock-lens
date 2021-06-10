@@ -1,9 +1,9 @@
 const Resp = require('./Response')
-const Util = require('./../libraries/Utility')
-const userModel = require('./../model/maps/UserModel')
-const _config = require('./../config/app.json')
-const mailgun = require('./../libraries/Mailgun')
-const { verify_msg, confirm_msg } = require('./../template/notify')
+const Util = require('../libraries/Utility')
+const userModel = require('../model/maps/UserModel')
+const _config = require('../config/app.json')
+const mailgun = require('../libraries/Mailgun')
+const { verify_msg, confirm_msg } = require('../template/notify')
 
 
 var initAuth = {
@@ -20,7 +20,7 @@ var initAuth = {
         
         if (error.length == 0) {
             var data = {
-                identity: Util.encode_url(param.email),
+                identity: Util.uuid(param.email),
                 fname: param.firstName,
                 lname: param.lastName,
                 email: param.email,
@@ -33,7 +33,7 @@ var initAuth = {
             userModel.find(data.identity, function(state){
                 if (!state) {
                     userModel.save(data.identity, data, (resp) => {
-                        if (resp.identity) {
+                        if (resp.identity && !resp.error) {
                             const options = {
                                 email:resp.email,
                                 subject:_config.mail_subject.verify,
@@ -99,8 +99,8 @@ var initAuth = {
         if(!param.password) error.push("Provide password")
 
         if (error.length == 0) {
-            userModel.find(Util.encode_url(param.email), (user) => {
-               if (user) {
+            userModel.find(Util.uuid(param.email), (user) => {
+               if (user && !user.error) {
                    if (user.status == 'active'){
                        var match = Util.check_password(param.password, user.password)
                        if (match){
@@ -127,7 +127,7 @@ var initAuth = {
         if (!param.email) error.push("Provide email")
 
         if (error.length == 0) {
-            userModel.find(Util.encode_url(param.email), (userInfo) => {
+            userModel.find(Util.uuid(param.email), (userInfo) => {
                 if (userInfo) {
                     const mailOption = {
                         email: userInfo.email,

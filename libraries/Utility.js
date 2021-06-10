@@ -42,16 +42,15 @@ const Utility = {
         const result = bcrypt.compareSync(value1, value2)
         return result
     },
-    encode_url: function(string) {
-        var sha = require('sha256')
-        const encrypt = sha.x2(string)
-        return encrypt
-    },
     compare_param: function(a,b) {
         if (a == b){
             return true;
         } else 
             return false;
+    },
+    uuid: function(string) {
+        const { v5: uuidv5} = require('uuid')
+        return uuidv5(string, process.env.ID_KEY)
     }
 }
 
