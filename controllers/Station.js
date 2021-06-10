@@ -83,7 +83,7 @@ var init = {
     },
 
     by_identity: function (param, callback) {
-        stationModel.update(param.identity, (state) => {
+        stationModel.find(param, (state) => {
             if (state && !state.error) {
                 return callback(Resp.success({msg: "data result found", resp: state}))
             } else {

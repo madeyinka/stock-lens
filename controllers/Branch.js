@@ -69,7 +69,7 @@ var init = {
     },
 
     by_identity: function (param, callback) {
-        branchModel.update(param.identity, (state) => {
+        branchModel.find(param, (state) => {
             if (state && !state.error) {
                 return callback(Resp.success({msg: "data result found", resp: state}))
             } else {
