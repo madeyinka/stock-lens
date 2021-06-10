@@ -1,42 +1,52 @@
 const _config = require('./../config/app.json')
 const Resp = require('./Response')
 const Util = require('./../libraries/Utility')
-const branchModel = require('./../model/maps/BranchModel')
+const stationModel = require('./../model/maps/StationModel')
 const urlSlug = require('url-slug')
 
 var init = {
 
     create: function(param, callback) {
         var error = []
-        if (!param.label)error.push("Provide a label for branch")
-        if (!param.state)error.push("Select a state for branch")
-        if (!param.region) error.push("Select a region for branch")
+        if (!param.label)error.push('Provide a label')
+        if (!param.branch_id)error.push('Select a branch')
+        if (!param.pms_pump)error.push('Provide number of PMS pumps')
+        if (!param.ago_pump)error.push('Provide number of AGO pumps')
+        if (!param.dpk_pump)error.push('Provide number of DPK pumps')
+        if (!param.pms_storage)error.push('Provide number of PMS storages')
+        if (!param.ago_storage)error.push('Provide number of AGO storages')
+        if (!param.dpk_storage)error.push('Provide number of DPK storages')
 
         if (error.length == 0) {
             var data = {
                 identity: Util.uuid(param.label),
                 label: param.label,
                 slug: urlSlug(param.label),
-                state: param.state,
-                region: param.region
+                branch_id: param.branch_id,
+                pms_pump: param.pms_pump,
+                ago_pump: param.ago_pump,
+                dpk_pump: param.dpk_pump,
+                pms_storage: param.pms_storage,
+                ago_storage: param.ago_storage,
+                dpk_storage: param.dpk_storage
             }
-            branchModel.find(data.identity, (state) => {
+            stationModel.find(data.identity, (state) => {
                 if (state && !state.error) {
-                    return callback(Resp.error({msg: "Branch with information already exists"}))
+                    return callback(Resp.error({msg: "Station with information already exists"}))
                 }else{
-                    branchModel.save(data.identity, data, (resp) => {
+                    stationModel.save(data.identity, data, (resp) => {
                         if (resp && !resp.error) {
-                            return callback(Resp.success({msg:"Branch successfully created.", resp:resp}))
+                            return callback(Resp.success({msg:"Station successfully created.", resp:resp}))
                         } else
                             return callback(Resp.error({msg:"Error encountered saving information"}))
                     })
                 }
             })
-        } else 
-            return callback(Resp.error({msg:"Invalid Parameter", resp:error}))
+        } else  
+            return callback(Resp.error({msg: "Invalid Parameter", resp: error}))
     },
 
-    update: function(param, callback) {
+    update: function (param, callback) {
         var error = []
         if (!param.identity) error.push("Provide an identity")
 
@@ -44,23 +54,27 @@ var init = {
             var data = {
                 label: param.label,
                 slug: urlSlug(param.label),
-                state: param.state,
-                region: param.region
+                branch_id: param.branch_id,
+                pms_pump: param.pms_pump,
+                ago_pump: param.ago_pump,
+                dpk_pump: param.dpk_pump,
+                pms_storage: param.pms_storage,
+                ago_storage: param.ago_storage,
+                dpk_storage: param.dpk_storage
             }
-            branchModel.update(data, param.identity, (resp) => {
+            stationModel.update(data, param.identity, (resp) => {
                 if (!resp.identity) {
                     return callback(Resp.error({msg:"Error encountered while updaing information"}))
                 } else 
-                    return callback(Resp.success({msg:"Branch information updated successfully.", resp: resp}))
+                    return callback(Resp.success({msg:"Station information updated successfully.", resp: resp}))
             })
         } else {
-            return console(Resp.error({msg:"Invalid Parameter", resp:error}))
+            return callback(Resp.error({msg:"Invalid Parameter", resp:error}))
         }
-        
     },
 
     pull: function(param, callback){
-        branchModel.search(param, _config.api_query_limit, (state) => {
+        stationModel.search(param, _config.api_query_limit, (state) => {
             if (state && state.error == null ) {
                 return callback(Resp.success({msg:"search result", resp: state}))
             } else 
@@ -69,7 +83,7 @@ var init = {
     },
 
     by_identity: function (param, callback) {
-        branchModel.update(param.identity, (state) => {
+        stationModel.update(param.identity, (state) => {
             if (state && !state.error) {
                 return callback(Resp.success({msg: "data result found", resp: state}))
             } else {
@@ -83,9 +97,9 @@ var init = {
         if (!param.identity)error.push("Provide identity")
 
         if (error.length == 0) {
-            branchModel.find(param.identity, (state) => {
+            stationModel.find(param.identity, (state) => {
                 if (state && !state.error) {
-                    branchModel.remove(param.identity, (resp) => {
+                    stationModel.remove(param.identity, (resp) => {
                         if (resp)
                             return callback(Resp.success({msg: "Record deleted successfully"}))
                         else 

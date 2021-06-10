@@ -25,5 +25,10 @@
     "mail_subject": {
         "verify": "User Verification",
         "confirm": "User Confirmation"
+    },
+    "elastic": {
+        "id": "smart-stock-deployment:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyQ3NzYxMjg0NDg2YTI0MGY5YmE4NWViNGUyZWUwZjdlYSQ0ZDRmZjAxZjAwNTE0YWQ4YmYzNjNkZWI4MmI4N2EwMg==",
+        "user": "elastic",
+        "pass": "CGaGDxeOXpIoGln8vz1A72UB"
     }
 }

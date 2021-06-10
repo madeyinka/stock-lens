@@ -1,4 +1,5 @@
 require('dotenv').config()
+const _config = require('./../config/app.json')
 
 let Connector = {
     _elastic: null,
@@ -17,9 +18,10 @@ let Connector = {
                 }
             })
         }
+
         return Connector._elastic;
     }
-
+    
 }
 
 module.exports = Connector;
