@@ -10,8 +10,8 @@ var initAuth = {
 
     register: function(param, callback) {
         var error = []
-        if(!param.firstName)error.push('Provide First Name')
-        if(!param.lastName)error.push('Provide Last Name')
+        if(!param.fname)error.push('Provide First Name')
+        if(!param.lname)error.push('Provide Last Name')
         if(!param.email)error.push('Provide email address')
         if(!param.phone)error.push('Provide Phone Number')
         if(!param.role)error.push('Select User Role')
@@ -21,8 +21,8 @@ var initAuth = {
         if (error.length == 0) {
             var data = {
                 identity: Util.uuid(param.email),
-                fname: param.firstName,
-                lname: param.lastName,
+                fname: param.fname,
+                lname: param.lname,
                 email: param.email,
                 passkey:Util.rand_str(25),
                 role: param.role,
@@ -64,7 +64,7 @@ var initAuth = {
                     const validate = Util.compare_param(query_key, state.passkey)
                     if (validate) {
                         const password = Util.rand_str(10)
-                        var data = {pasword: Util.get_hash(password), passkey:Util.rand_str(25), status:"active"}
+                        var data = {password: Util.get_hash(password), passkey:Util.rand_str(25), status:"active"}
                         userModel.update(data, query_id, (resp) =>{
                             if (resp && !resp.error) {
                                 const options = {
