@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Util = require('./../libraries/Utility')
-const authController = require('./../controllers/AuthController')
+const authController = require('./../controllers/Auth')
 
 router.post('/register', (req, res) => { 
     authController.register(Util.extract_param(req), function(state){
