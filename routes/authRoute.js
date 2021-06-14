@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Util = require('./../libraries/Utility')
-const authController = require('../controllers/Auth')
+const authController = require('./../controllers/AuthController')
 
 router.post('/register', (req, res) => { 
     authController.register(Util.extract_param(req), function(state){
@@ -27,6 +27,8 @@ router.post('/reset', (req, res) => {
     })
 })
 
-router.post('/')
+router.get('/', (req, res) => {
+    res.send('Home page')
+}) 
 
 module.exports = router

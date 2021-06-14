@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Util = require('./../libraries/Utility')
 const branchController = require('../controllers/Branch')
+const { authenticateUser } = require('../middleware/Authenticate')
 
 router.post('/create', (req, res) => {
     branchController.create(Util.extract_param(req), (state) => {
@@ -15,7 +16,7 @@ router.post('/modify', (req, res) => {
     })
 })
 
-router.get('/pull', (req, res) => {
+router.get('/pull', authenticateUser, (req, res) => {
     branchController.pull(req.query, (state) => {
         Util.resp(res).json(state)
     })
