@@ -7,7 +7,7 @@ const Template = {
         const html = `
             <p>Dear ${options.fname},</p>
             <p>Use the link below to set your secured password and activate your account.</p>
-            <p><a href="${'http://'+_config.app_url+':'+process.env.PORT+_config.app_base+_config.api._url+_config.api._version+'/auth/verify?user='+options.identity+'&passkey='+options.passkey}">Verify</a></p>
+            <p><a href="${_config.stage_url+_config.app_base+_config.api._url+_config.api._version+'/auth/verify?user='+options.identity+'&passkey='+options.passkey}">Verify</a></p>
         `
         return html
     },

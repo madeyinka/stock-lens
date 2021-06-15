@@ -1,13 +1,14 @@
 {
     "app_name": "Stock Keeper Inventory",
     "app_version": "1.0.0",
-    "app_url": "localhost",
+    "app_url": "127.0.0.1",
     "app_base": "/stock-lens",
     "api": {
         "_url": "/api",
         "_auth": "/auth",
         "_version": "/1.0"
     },
+    "stage_url": "https://stocklens.herokuapp.com",
     "api_query_limit": 20,
     "bcrypt":{
         "_rounds": 10
