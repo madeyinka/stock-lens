@@ -2,7 +2,6 @@ const _config = require('./../config/app.json')
 const Resp = require('./Response')
 const Util = require('./../libraries/Utility')
 const userModel = require('./../model/maps/UserModel')
-const { response } = require('express')
 
 var init = {
 
@@ -26,7 +25,7 @@ var init = {
             }
             userModel.update(data, param.identity, (resp) => {
                 if (!resp.identity) {
-                    return callback(Resp.error({msg:"Error encountered while updaing information"}))
+                    return callback(Resp.error({msg:"Error encountered while updating information"}))
                 } else {
                     return callback(Resp.success({msg:"User information updated successfully.", resp: resp}))
                 }

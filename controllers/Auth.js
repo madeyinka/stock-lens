@@ -16,7 +16,7 @@ var initAuth = {
         if(!param.phone)error.push('Provide Phone Number')
         if(!param.role)error.push('Select User Role')
         if(!param.station_id)error.push('User must be assigned to station')
-        if(!param.branch_id)error.push('Station  mshould have a branch')
+        if(!param.branch_id)error.push('Station should have a branch')
         
         if (error.length == 0) {
             var data = {
@@ -104,7 +104,7 @@ var initAuth = {
                    if (user.status == 'active'){
                        var match = Util.check_password(param.password, user.password)
                        if (match){
-                           const payload = {name:user.fname,email:user.email,role:user.role,station_id:user.station_id}
+                           const payload = {id:user.identity,name:user.fname,email:user.email,role:user.role,station_id:user.station_id,branch_id:user.branch_id}
                            const token = Util.generate_token(payload)
                            return callback(Resp.success({msg:"Login Successful", resp:token}))
                        } else {
@@ -114,7 +114,7 @@ var initAuth = {
                        return callback(Resp.error({msg:"Account not activated, check your mail."}))
                    }
                }else {
-                   return callback(Resp.error({msg:"User not found"}))
+                   return callback(Resp.error({msg:"User does not exist."}))
                }
             })
         }else {

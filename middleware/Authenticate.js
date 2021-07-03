@@ -17,9 +17,13 @@ var AuthUser = {
             if (!decodedToken) {
                 return res.status(401).json({message: "Invalid authorization token"})
             }
-            console.log(decodedToken)
+            req.userInfo = decodedToken
         })
         next()
+    },
+    
+    checkAdmin: function(req, res, next) {
+
     }
 }
 

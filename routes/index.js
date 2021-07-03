@@ -10,5 +10,8 @@ router.use(api_auth_url, require('./authRoute'))
 router.use(api_url+'/branch', require('./branch'))
 router.use(api_url+'/station', require('./station'))
 router.use(api_url+'/user', require('./user'))
+router.use(api_url+'/category', require('./category'))
+router.use(api_url+'/product', require('./product'))
+router.use(api_url+'/inventory', require('./inventory'))
 
 module.exports = router

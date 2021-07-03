@@ -16,12 +16,18 @@
     "indices": {
         "user": "smart_users",
         "branch": "smart_branches",
-        "station": "smart_stations"
+        "station": "smart_stations",
+        "category": "smart_category",
+        "product": "smart_product",
+        "inventory": "smart_inventory"
     },
     "doc_type": {
         "user": "user",
         "branch": "branch",
-        "station": "station"
+        "station": "station",
+        "category": "category",
+        "product": "product",
+        "inventory": "inventory"
     },
     "mail_subject": {
         "verify": "User Verification",
@@ -30,6 +36,6 @@
     "elastic": {
         "id": "i-o-optimized-deployment:dXMtd2VzdDEuZ2NwLmNsb3VkLmVzLmlvJDlhNjIzMjkwYmU5YzRmMmFhNWVhNGEwMTE3ODc0NzcxJGMyMWIzMmFiMzJkNDQ3ZjFiMjRkOGVkMjZhOWZlMWJk",
         "user": "elastic",
-        "pass": "oF4B0rbDv94WBpDh5k41quf7"
+        "pass": "aE4tVyu7DuYOUVsDABN9M72I"
     }
 }

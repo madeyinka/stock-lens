@@ -27,8 +27,8 @@ router.post('/reset', (req, res) => {
     })
 })
 
-router.get('/', (req, res) => {
-    res.send('Home page')
-}) 
+// router.get('/', (req, res) => {
+//     res.send('Home page')
+// }) 
 
 module.exports = router

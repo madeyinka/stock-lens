@@ -19,7 +19,7 @@ const Utility = {
             data = req.field
         } else if(req.body){
             data = req.body
-        }
+        } 
         return data;
     },
     resp: function(res){

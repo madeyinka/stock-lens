@@ -125,7 +125,7 @@ class Model {
 
         Object.entries(param).forEach(([key,value]) => {
             if(_excluded_key.indexOf(key) == -1){ //value.toString() != "" &&
-                if(param.search) wildCard.push(esb.termQuery(key,value))
+                if(param.search) wildCard.push(esb.termQuery(key,value)) //esb library wildcardsearch
                 else boolQuery.must(esb.matchQuery(key,value)) 
             }else{
                 if(key == "exclude"){
