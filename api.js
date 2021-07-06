@@ -2,12 +2,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const _config = require('config.json')('./config/app.json')
 const Logger = require('./libraries/Logger')
+const cors = require('cors')
 const { PORT } = process.env
 require('dotenv').config()
 
 const app = express()
 
 //middlewares + routes
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 app.use(require('./routes'))
