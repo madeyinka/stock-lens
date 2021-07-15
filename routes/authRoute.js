@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Util = require('./../libraries/Utility')
 const authController = require('./../controllers/Auth')
+const { authenticateUser } = require('../middleware/Authenticate')
 
 router.post('/register', (req, res) => { 
     authController.register(Util.extract_param(req), function(state){
@@ -23,6 +24,12 @@ router.get('/verify', (req, res) => {
 
 router.post('/reset', (req, res) => {
     authController.reset_link(Util.extract_param(req), function(state){
+        Util.resp(res).json(state)
+    })
+})
+
+router.get('/usercontext', authenticateUser, (req, res) => {
+    authController.usercontext(req, function(state){
         Util.resp(res).json(state)
     })
 })

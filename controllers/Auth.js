@@ -26,6 +26,7 @@ var initAuth = {
                 email: param.email,
                 passkey:Util.rand_str(25),
                 role: param.role,
+                isAdmin: false,
                 phone: param.phone,
                 station_id: param.station_id,
                 branch_id: param.branch_id
@@ -104,17 +105,17 @@ var initAuth = {
                    if (user.status == 'active'){
                        var match = Util.check_password(param.password, user.password)
                        if (match){
-                           const payload = {id:user.identity,name:user.fname,email:user.email,role:user.role,station_id:user.station_id,branch_id:user.branch_id}
+                           const payload = {id:user.identity,name:user.fname,email:user.email,role:user.role,isAdmin:user.isAdmin,station_id:user.station_id,branch_id:user.branch_id}
                            const token = Util.generate_token(payload)
                            return callback(Resp.success({msg:"Login Successful", resp:token}))
                        } else {
-                           return callback(Resp.error({msg: "Incorrect Password"}))
+                           return callback(Resp.error({msg: "Invalid Credentials"}))
                        }
                    }else {
                        return callback(Resp.error({msg:"Account not activated, check your mail."}))
                    }
                }else {
-                   return callback(Resp.error({msg:"User does not exist."}))
+                   return callback(Resp.error({msg:"Invalid Credentials"}))
                }
             })
         }else {
@@ -147,6 +148,34 @@ var initAuth = {
         } else {
             return callback(Resp.error({msg:"Invalid Parameter", resp:error}))
         }
+    },
+
+    usercontext: function(req, callback){
+        var userObj = {}
+        if (req.userInfo){
+            userModel.find(req.userInfo.id, (user) => {
+                if (user) {
+                    const stationModel = require('./../model/maps/StationModel')
+                    stationModel.find(user.station_id, (station) => {
+                        if (station) {
+                            userObj.id = user.identity,
+                            userObj.username = user.fname,
+                            userObj.isAdmin = user.isAdmin,
+                            userObj.station = user.station_id,
+                            userObj.pms_meter = station.pms_pump,
+                            userObj.ago_meter = station.ago_pump,
+                            userObj.dpk_meter = station.dpk_pump,
+                            userObj.pms_tank = station.pms_storage,
+                            userObj.ago_tank = station.ago_storage,
+                            userObj.dpk_tank = station.dpk_storage
+                        }
+                        return callback(Resp.success({msg: "User Information found.", resp: userObj}))
+                    })
+                } else
+                    return callback(Resp.error({msg:"Invalid Parameter"}))    
+            })   
+        } else 
+            return callback(Resp.error({msg:"Invalid Parameter"}))
     }
 
 }

@@ -15,6 +15,7 @@ var init = {
                 lname: param.lname,
                 email: param.email,
                 role: param.role,
+                isAdmin: param.isAdmin,
                 phone: param.phone,
                 password: param.password,
                 branch_id: param.branch_id,

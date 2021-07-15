@@ -11,6 +11,7 @@ const mapping = {
     "password": {"type":"text"},
     "passkey": {"type":"keyword"},
     "role": {"type":"keyword"},
+    "isAdmin": {"type": "boolean"},
     "branch_id": {"type": "keyword"},
     "station_id": {"type": "keyword"},
     "profile": {"type":"text"},

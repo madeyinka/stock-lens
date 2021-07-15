@@ -23,7 +23,7 @@ var AuthUser = {
     },
     
     checkAdmin: function(req, res, next) {
-
+        //check if user role is admin
     }
 }
 
