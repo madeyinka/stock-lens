@@ -8,7 +8,7 @@ const { verify_msg, confirm_msg } = require('../template/notify')
 
 var initAuth = {
 
-    register: function(param, callback) {
+    register: function(param, callback) { //update user data
         var error = []
         if(!param.fname)error.push('Provide First Name')
         if(!param.lname)error.push('Provide Last Name')
