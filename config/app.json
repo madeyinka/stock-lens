@@ -34,8 +34,8 @@
         "confirm": "User Confirmation"
     },
     "elastic": {
-        "id": "stocklens-deployment:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyQ4M2ZmMTE4NTgxZDI0YjQ4YjZmNTE2Nzc1MmEzMjhhNCQ3ODI2MzY3NGViMWI0YjFhYWU4MGUyYzU4ZGQwOGU1Mw==",
+        "id": "stocklens-db-setup:dXMtd2VzdDEuZ2NwLmNsb3VkLmVzLmlvJDVjZDhmOTMyNDRlNDQ1YjU5YTM3OTA5NTg0MjEwODdjJGFkZDllNWNhZmNhNDQyMWJiZjBmNDY3YzM1MmQwYzJi",
         "user": "elastic",
-        "pass": "aE4tVyu7DuYOUVsDABN9M72I"
+        "pass": "n53PHuGZY1Ygc4NW5Odx1OAt"
     }
 }
