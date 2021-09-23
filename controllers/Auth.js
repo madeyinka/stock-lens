@@ -40,11 +40,11 @@ var initAuth = {
                                 subject:_config.mail_subject.verify,
                                 message: verify_msg(resp)
                             }
-                            mailgun.sendMail(options, (state) => {
-                                if (state){
+                            mailgun.sendMail(options, (msg) => {
+                                if (msg && msg.id){
                                     return callback(Resp.success({msg: "Check your email for verification", resp:resp}))
                                 } else {
-                                    return callback(Resp.error({msg: "Something went wrong while saving data", resp:{}}))
+                                    return callback(Resp.error({msg: "Email service unavailable", resp:resp}))
                                 }
                             })
                         } 
